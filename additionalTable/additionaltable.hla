@@ -1,0 +1,87 @@
+program additionaltable;
+#include( "stdlib.hhf" );
+
+static 
+    a:int8;
+    b:int8;
+    tabledimensions:int8;  //number of rows and columns
+    sum:int8 := 0;
+
+begin additionaltable;
+
+    stdout.put("Enter the lower bound int8 value for the additional table :: ");
+        stdin.get(a);
+    stdout.put("Enter the upper bound int8 value for the additional table :: ");
+        stdin.get(b);
+    // storing the values to 8-bit registers
+    mov(a,al); //first value
+    mov(b,ah); //second value
+    mov(tabledimensions,bl);
+
+    // adds 2 to the difference btwn the values to get the table dimensions
+    mov(1,bh);
+
+    // initial column number
+    mov(1,cl);
+
+    // initial row number
+    mov(0,ch);
+    
+    add(ah,bl);
+    sub(al,bl);
+    add(bh,bl);
+
+    stdout.put("Number of rows and columns :: ",bl, nl);
+
+    if(al<0 || ah > 127) then;
+        stdout.put("Enter an int8 value !!");
+    else;
+    
+    // Checking whether the second value is greater than the first
+        if (al < ah) then ;
+            stdout.put("The   entered numbers are :: ",a , " and " ,b ,nl);
+            // printing a row with values between the lower and upper bounds
+            while(ch<=bl) do ; // rows iterator
+                mov(al,dh);  // dh --> column value
+                mov(bl,dl);  // dl --> column number
+                if(ch == 0) then;
+                    stdout.put("Add ");
+                    mov(al,ch);
+                    sub(1,ch);
+                    while(cl<=dl) do ;
+                        if(cl == dl) then;
+                        stdout.put(dh,nl);
+                        else
+                        stdout.put(dh," ");
+                        add(1,dh);
+                    endif;
+                        add(1,cl);
+                    endwhile;
+                else ;
+                    mov(al,dh);  // dh --> column value
+                    mov(bl,dl);  // dl --> column number  
+                    add(1,dl);
+                    add(ch,dh);
+                    mov(1,cl);  // cl --> initial column number for the row 
+                    while(cl<=dl) do;
+                        if(cl == 1) then;
+                            stdout.put(ch," ");
+                        elseif(cl == dl) then;
+                            stdout.put(dh,nl);                     
+                        else;
+                            stdout.put(dh," ");
+                            add(1,dh);
+                        endif;
+                        add(1,cl);
+                    endwhile;
+                endif;
+                add(1,ch);
+            endwhile;
+        else;
+            stdout.put("The second value should be greater than the first! ",nl);
+        endif;
+        
+    endif;
+
+
+end additionaltable;
