@@ -1,0 +1,22 @@
+program sumofpositives;
+#include("stdlib.hhf");
+
+static
+    sum:   int32 := 0;
+    number: int32;
+
+begin sumofpositives;
+
+    stdout.put("Enter a positive number to begin or a negative number to terminate ::  ");
+    stdin.get(number); 
+
+    while(number > 0) do
+        mov(number, eax);
+        add(eax, sum);
+        stdout.put("Enter a positive number, 0 or negative to stop: ");
+        stdin.get(number); 
+    endwhile;
+     
+    stdout.put("The sum of the positive numbers is: ", sum, nl); 
+
+end sumofpositives;
