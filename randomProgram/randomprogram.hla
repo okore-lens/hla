@@ -1,0 +1,28 @@
+program randomprogram;
+
+#include("stdlib.hhf");
+
+static
+    startYear:   int16 := 0;
+    endYear: int16;
+    difference:int16:=0;
+
+begin randomprogram;
+    stdout.put("Enter the start year ::  ");
+    stdin.get(startYear); 
+
+    stdout.put("Enter the end year ::  ");
+    stdin.get(endYear); 
+
+    mov(startYear,ax);
+    mov(endYear,bx);
+
+    if(ax>bx) then;
+        stdout.put("End year should be greater than start year");
+    else;
+        sub(ax,bx);
+        mov(bx,difference);
+        stdout.put("The time passed is :: ", difference ," years",nl);
+    endif;
+
+end randomprogram;

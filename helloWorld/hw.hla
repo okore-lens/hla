@@ -11,3 +11,5 @@ begin HelloWorld;
  
 
 end HelloWorld;
+
+// hla -lmelf_i386 -v hw

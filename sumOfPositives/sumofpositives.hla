@@ -7,16 +7,20 @@ static
 
 begin sumofpositives;
 
-    stdout.put("Enter a positive number to begin or a negative number to terminate ::  ");
+    stdout.put("Enter a positive number to begin or a negative number / 0 to terminate ::  ");
     stdin.get(number); 
 
-    while(number > 0) do
-        mov(number, eax);
-        add(eax, sum);
-        stdout.put("Enter a positive number, 0 or negative to stop: ");
+    // repeat statement
+
+    if (number > 0) then;
+    repeat 
+        mov(number,eax);
+        add(eax,sum);
+        stdout.put("Enter a positive number to begin or a negative number /0 to terminate ::  ");
         stdin.get(number); 
-    endwhile;
-     
+    until(number <= 0);
+
+    endif;
     stdout.put("The sum of the positive numbers is: ", sum, nl); 
 
 end sumofpositives;

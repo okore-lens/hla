@@ -39,7 +39,7 @@ begin additionaltable;
     
     // Checking whether the second value is greater than the first
         if (al < ah) then ;
-            stdout.put("The   entered numbers are :: ",a , " and " ,b ,nl);
+            // stdout.put("The   entered numbers are :: ",a , " and " ,b ,nl);
             // printing a row with values between the lower and upper bounds
             while(ch<=bl) do ; // rows iterator
                 mov(al,dh);  // dh --> column value
@@ -50,9 +50,11 @@ begin additionaltable;
                     sub(1,ch);
                     while(cl<=dl) do ;
                         if(cl == dl) then;
-                        stdout.put(dh,nl);
+                        mov(dh,sum);
+                        stdout.put(sum,nl);
                         else
-                        stdout.put(dh," ");
+                        mov(dh,sum);
+                        stdout.put(sum," ");
                         add(1,dh);
                     endif;
                         add(1,cl);
@@ -65,11 +67,14 @@ begin additionaltable;
                     mov(1,cl);  // cl --> initial column number for the row 
                     while(cl<=dl) do;
                         if(cl == 1) then;
-                            stdout.put(ch," ");
+                            mov(ch,sum);
+                            stdout.put(sum," ");
                         elseif(cl == dl) then;
-                            stdout.put(dh,nl);                     
+                            mov(dh,sum);
+                            stdout.put(sum,nl);                     
                         else;
-                            stdout.put(dh," ");
+                            mov(dh,sum);
+                            stdout.put(sum," ");
                             add(1,dh);
                         endif;
                         add(1,cl);
